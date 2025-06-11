@@ -3,6 +3,7 @@ on: push
 
 jobs:
   first_job:
+    name: Primer JOB
     runs-on: ubuntu-latest
 
     env:
@@ -11,8 +12,15 @@ jobs:
     steps:
       - name: Hola mundo
         run: echo "Hola mundo $NAME"
+        
+      - name: Action
+        uses: actions/checkout@v4
+        
+      - name: Working dir after action
+        run: ls -al
 
   second_job:
+    name: Segundo JOB
     if: ${{ github.ref != 'refs/heads/main' }}
     needs: first_job
     runs-on: ubuntu-latest
