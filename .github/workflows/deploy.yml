@@ -54,3 +54,11 @@ jobs:
 
       - name: Mensaje traido desde first_job
         run: echo "$SALIDA"
+
+      - name: Descargar artefacto
+        uses: actions/download-artifact@v4
+        with:
+          name: archivo-test
+
+      - name: Cat file
+        run: cat test.log
