@@ -9,6 +9,9 @@ jobs:
     env:
       NAME: ADRIAN
 
+    outputs:
+      salida: ${{ steps.step_1.outputs.mi_variable }}
+
     steps:
       - name: Hola mundo
         run: echo "Hola mundo $NAME"
@@ -32,6 +35,12 @@ jobs:
     needs: first_job
     runs-on: ubuntu-latest
 
+    env:
+      SALIDA: ${{ needs.first_job.outputs.salida }} 
+
     steps:
       - name: Hola mundo
         run: echo "Hola mundo segundo"
+
+      - name: Mensaje traido desde first_job
+        run: echo "$SALIDA"
