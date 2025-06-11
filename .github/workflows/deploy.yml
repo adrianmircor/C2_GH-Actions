@@ -19,6 +19,13 @@ jobs:
       - name: Working dir after action
         run: ls -al
 
+      - name: Working dir
+        id: step_1
+        run: echo "mi_variable=Hola mundo" >> $GITHUB_OUTPUT
+
+      - name: Obtener mensaje de step anterior. Aquí puede ir cualquier contenido.
+        run: echo "$${{ steps.step_1.outputs.mi_variable }}"
+
   second_job:
     name: Segundo JOB
     if: ${{ github.ref != 'refs/heads/main' }}
